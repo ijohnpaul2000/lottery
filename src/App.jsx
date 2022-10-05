@@ -150,7 +150,10 @@ function App() {
           );
         })}
 
-        <button onClick={handleGenerateWinner} disabled={fileData.length <= 0}>
+        <button
+          onClick={handleGenerateWinner}
+          disabled={fileData.length <= 0 || finalEntries.length <= 0}
+        >
           Generate Winner
         </button>
       </div>
