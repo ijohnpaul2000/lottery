@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
+import { useRef, useState } from "react";
 function App() {
   const inputRef = useRef(null);
   const [fileHeader, setFileHeader] = useState([]);
@@ -112,7 +111,11 @@ function App() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
+  const data = [
+    { option: "0", style: { backgroundColor: "green", textColor: "black" } },
+    { option: "1", style: { backgroundColor: "black" } },
+    { option: "2" },
+  ];
   console.log(winners);
   return (
     <div className="App">
@@ -137,9 +140,9 @@ function App() {
         ))}
 
         <br />
-        {finalEntries.map((entry, idx) => {
+        {/* {finalEntries.map((entry, idx) => {
           return <div key={idx}>{entry}</div>;
-        })}
+        })} */}
 
         <h1>Winners</h1>
         {winners.map((winner, idx) => {
