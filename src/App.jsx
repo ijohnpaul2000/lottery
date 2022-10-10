@@ -99,6 +99,7 @@ function App() {
     ]);
 
     setFinalEntries(updatedFinalEntries);
+    console.log("Winner: ", winner);
   };
 
   const prizesOptions = prizes.map((prize, index) => {
@@ -111,12 +112,17 @@ function App() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const data = [
-    { option: "0", style: { backgroundColor: "green", textColor: "black" } },
-    { option: "1", style: { backgroundColor: "black" } },
-    { option: "2" },
-  ];
-  console.log(winners);
+
+  const shuffle = (arr) => {
+    let i = arr.length;
+    while (--i > 0) {
+      let randIndex = Math.floor(Math.random() * (i + 1));
+      [arr[randIndex], arr[i]] = [arr[i], arr[randIndex]];
+    }
+    console.log(finalEntries);
+    return arr;
+  };
+
   return (
     <div className="App">
       <input type="file" ref={inputRef} onChange={onFileUpload} />
@@ -158,6 +164,13 @@ function App() {
           disabled={fileData.length <= 0 || finalEntries.length <= 0}
         >
           Generate Winner
+        </button>
+
+        <button
+          onClick={() => shuffle(finalEntries)}
+          disabled={fileData.length <= 0 || finalEntries.length <= 0}
+        >
+          Shufffle
         </button>
       </div>
     </div>
